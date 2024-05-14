@@ -23,14 +23,4 @@
 
   {{>swagger/definitions definitions=definitions}}
 
-  {{! Powered by link }}
-  <div class="doc-row no-margin">
-    <div class="doc-copy doc-separator">
-      {{#if externalDocs}}
-      <a href="{{externalDocs.url}}">{{externalDocs.description}}</a>
-       {{else}}
-      <a class="powered-by" href="https://github.com/wayfair/dociql">Documentation by <span>DociQL</span></a>
-      {{/if}}
-    </div>
-  </div>
 </article>

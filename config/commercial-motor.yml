@@ -4,13 +4,11 @@ servers:
     description: Wunder Insurance Try-API Gateway (after registration)
 
 info:
-  title: Wunder Insurance API
+  title: Wunder Insurance API - Commercial Motor Insurance
   description: |
     This is an excerpt from the ActiveInsurance API documentation. 
 
-    You can use the Wunder Insurance Try-API Gateway to get quotes for this insurance products. 
-    The production environment allows also for the creation and management of estimates, quotes, applications, policies, FNOL & claims management. 
-
+    You can use the Wunder Insurance Try-API Gateway to get quotes for this insurance product. 
     ActiveInsurance is a GraphQL API but can also be accessed via REST. 
 
     Feel free to contact us at info@wunder-insurance.com
@@ -23,6 +21,17 @@ info:
     name: Commercial
     url: 'https://wunder-insurance.com/terms'
 domains:
+  - name: Commercial Motor Product
+    description: Insurance for fleet vehicles
+    usecases:
+    - name: Create Quote      
+      query: mutation.CommercialMotorQuote
+    - name: Create Policy
+      query: mutation.CommercialMotorPolicy
+    - name: Get Quote
+      query: query.commercialMotorQuoteQuery
+    - name: Get Policy
+      query: query.commercialMotorPolicyQuery
   - name: Identities
     description: You can define custom entities for your business domain. These are some example entities used in this product
     usecases:
@@ -36,14 +45,3 @@ domains:
         description: Returns list of persons. Person is an entity according to your business domain
         query: query.people
 
-  - name: Commercial Motor Product
-    description: Insurance for fleet vehicles
-    usecases:
-    - name: Create Quote      
-      query: mutation.CommercialMotorQuote
-    - name: Create Policy
-      query: mutation.CommercialMotorPolicy
-    - name: Get Quote
-      query: query.commercialMotorQuoteQuery
-    - name: Get Policy
-      query: query.commercialMotorPolicyQuery

@@ -1,15 +1,19 @@
-
+var Handlebars = require('handlebars')
 const yaml = require('js-yaml')
 const url = require('url')
 const fs = require("fs")
 const fetchSchema = require("./fetch-schema")
 const composePaths = require("./compose-paths")
 
+Handlebars.registerHelper('toJSON', function(obj) {
+    return JSON.stringify(obj, null, 3);
+});
+
 module.exports = function(specPath, headers, introspectionUrl) {
     // read spec file content
     const fileContent = fs.readFileSync(specPath, "utf8")
     // deserialise
-    const spec = yaml.safeLoad(fileContent)
+    const spec = yaml.load(fileContent)
     // fetch graphQL Schema, if given an introspection url use that over the value in
     // the spec
     const graphUrl = introspectionUrl ? introspectionUrl : spec.introspection

@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
-var program = require('commander'),
+var commander = require('commander'),
     package = require('../package'),
     spectacle = require('../index.js')
 
 //
 //= Process CLI input
+
+var program = commander.program
 
 program.version(package.version)
     .usage('[options] <config.yml>')

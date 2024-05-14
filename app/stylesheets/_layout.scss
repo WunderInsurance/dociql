@@ -21,6 +21,12 @@ button:focus {
   @include small-label($secondary-color);
 }
 
+
+h2.panel-title, 
+.json-schema-ref {
+  word-break: break-word;
+}
+
 //
 // Topbar layout
 

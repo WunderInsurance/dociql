@@ -29,7 +29,7 @@ var defaults = {
 }
 
 function resolveOptions(options) {
-    var opts = _.extend({}, defaults, options)
+    var opts = _.extend({ specFile: options.specFile }, defaults, options._optionValues)
 
     // Replace some absolute paths
     if (opts.specFile && opts.specFile.indexOf('test/fixtures') === 0)

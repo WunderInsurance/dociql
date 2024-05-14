@@ -18,10 +18,10 @@ var common = {
       return value;
     }
 
-    var html = marked(value)
+    var html = marked.marked(value)
     // We strip the surrounding <p>-tag, if
     if (stripParagraph) {
-      var $ = cheerio("<root>" + html + "</root>")
+      var $ = cheerio.default("<root>" + html + "</root>")
       // Only strip <p>-tags and only if there is just one of them.
       if ($.children().length === 1 && $.children('p').length === 1) {
         html = $.children('p').html()
@@ -159,10 +159,10 @@ var common = {
     }
 
     if (typeof (value) == "string") {      
-      return cheerio.load(marked("```gql\r\n" + value + "\n```")).html();      
+      return cheerio.load(marked.marked("```gql\r\n" + value + "\n```")).html();      
     } else {
       var obj = JSON.stringify(value, null, 2)
-      return cheerio.load(marked("```json\r\n" + obj + "\n```")).html()
+      return cheerio.load(marked.marked("```json\r\n" + obj + "\n```")).html()
     }
   },
 

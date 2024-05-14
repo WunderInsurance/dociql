@@ -5,14 +5,36 @@
   Renders json-schema object properties.
 --}}
 {{#if properties}}
+
 <section class="json-schema-properties">
+
+  <!--div style="border: 1px solid black;">
+  {{ toJSON properties }}
+  </div-->
+
   <dl>
-    {{#each properties}}
+    {{#each properties}}      
+
       <dt data-property-name="{{htmlId @key}}"{{#if description}} class="has-description"{{/if}}>
         {{!Single property, default type is "object"}}
         <span class="json-property-name">{{@key}}:</span>
-        {{>json-schema/datatype}}
-        {{!>json-schema/datatype discriminator=(equal @key ../discriminator)}}
+
+        {{#if properties.return.$ref }}
+          <br/>
+          <a class="json-schema-ref" href="{{schemaReferenceHref properties.return.$ref}}">
+            {{schemaSubschemaName properties.return.$ref}}
+          </a>
+        {{else if properties.return.items.$ref }}
+          <div class="json-schema-ref-array">
+            <a class="json-schema-ref" href="{{schemaReferenceHref properties.return.items.$ref}}">
+              {{schemaSubschemaName properties.return.items.$ref}}
+            </a> 
+          </div>
+        {{else}}
+          {{>json-schema/datatype}}
+          {{!>json-schema/datatype discriminator=(equal @key ../discriminator)}}
+        {{/if}}
+
         {{#ifcontains ../required @key}}
           <span class="json-property-required"></span>
         {{/ifcontains}}
@@ -33,10 +55,15 @@
           --}}
         </dd>
       {{/if}}
+
       {{#if properties}}
-        <dt class="json-inner-schema">
-          {{~>json-schema/body $ref="" description=""}}
-        </dt>
+        {{#unless properties.return.$ref }}
+          {{#unless properties.return.items.$ref }}
+            <dt class="json-inner-schema">
+              {{~>json-schema/body $ref="" description=""}}
+            </dt>
+          {{/unless}}
+        {{/unless}}
       {{/if}}
       {{!-- {{#if items}}
         <dt class="json-inner-schema">

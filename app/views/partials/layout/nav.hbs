@@ -67,10 +67,13 @@
   {{/if}}
 
   <h5>Schema Definitions</h5>
-  {{#each definitions}}
-    <a href="#definition-{{htmlId @key}}">
-      {{@key}}
-    </a>
+
+  {{#each definitions}}  
+    <a id="key-{{@key}}" href="#definition-{{htmlId @key}}">
+      {{@key}}      
+    </a>    
+    <script> tippy('#key-{{@key}}', { maxWidth: 1200, content: "{{ @key }}" }); </script>
   {{/each}}  
 
 </nav>
+
